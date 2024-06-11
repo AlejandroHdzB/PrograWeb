@@ -1,0 +1,15 @@
+.header-img{
+    background-image: url('img/banner.jpg');
+    background-size: cover;
+    background-position: center; 
+    color: white;
+}
+
+a{
+    color: white !important;
+    font-size: 25px !important;
+}
+
+a:hover{
+    color: goldenrod !important;
+}
