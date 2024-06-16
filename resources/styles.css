@@ -82,11 +82,12 @@ img{
 .div-add{
     display: flex;
     align-items: center;
-    margin: 20px;
+    margin: 15px;
 }
 
 .div-add p {
     margin-top: 15px;
     margin-right: 10px;
     font-size: 20px;
+    color: white;
 }
