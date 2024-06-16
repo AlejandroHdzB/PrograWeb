@@ -43,7 +43,7 @@ function update(event){
             url: "../model/updateProductos.php",
             data:datos,
             success: function(result) {
-                console.log('Respuesta servidor',result)
+                alert(result)
             },
             error: function(xhr, status, error) {
                 console.error("Error en la solicitud:", error);

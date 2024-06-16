@@ -19,19 +19,21 @@ if($encontrado){
         $precio = $_POST['precio'];
         $cantidad = $_POST['cantidad'];
 
-        
-        
-        $actualizar['precio'] = $precio;
-        $actualizar['cantidad'] = $cantidad;
-        //$this->validarNumeros($actualizar['precio']); 
-        //$this->validarNumeros($actualizar['cantidad']);
+        $valPrecio=validarNumeros($precio); 
+        $valCantidad=validarNumeros($cantidad);
+        if($valPrecio && $valCantidad){
+            $actualizar['precio'] = $precio;
+            $actualizar['cantidad'] = $cantidad;
+            if($productoModelo->updateById($id,$actualizar)){
+                echo "Actualizacion completa";
+            }else{
+                echo "Actualizacion no concluida";
+            }
 
-        if($productoModelo->updateById($id,$actualizar)){
-            $response = 1;
         }else{
-            $response = 0;
+            echo "Inconsistencia en tipo de datos.";
         }
-        echo "todo bien";
+    
     } else {
         echo "Error: La solicitud debe ser mediante POST";
     }
@@ -40,11 +42,11 @@ if($encontrado){
 }
 
 function validarNumeros($numero){
+    $bnd = true;
     if($numero < 0){
-        return false;
-    }else{
-        return true;
+        $bnd = false;
     }
+    return $bnd;
     
 }
 
