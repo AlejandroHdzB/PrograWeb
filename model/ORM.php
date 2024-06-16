@@ -1,13 +1,16 @@
 <?php
-class Orm{
+class Orm {
     protected $table;
     protected $db;
+    protected $id;
 
-    function __construct($table,PDO $conn){
+    function __construct($id, $table, PDO $conn) {
+        $this->id = $id;
         $this->table = $table;
         $this->db = $conn;
     }
 
+<<<<<<< HEAD
 
     function insert($data){
         $sql = "INSERT INTO {$this->table} (";
@@ -83,5 +86,29 @@ class Orm{
 
     }
 
+=======
+    function getAll() {
+        $sql = "SELECT * FROM {$this->table}";
+        $stm = $this->db->prepare($sql);
+        $stm->execute();
+        return $stm->fetchAll();
+    }
+
+    function getById($id) {
+        $sql = "SELECT * FROM {$this->table} WHERE id = :id";
+        $stm = $this->db->prepare($sql);
+        $stm->bindParam(':id', $id, PDO::PARAM_INT);
+        $stm->execute();
+        return $stm->fetch();
+    }
+
+    function deleteById($id){
+        $succes=false;
+        $sql="DELETE FROM {$this->table} WHERE id={$id}";
+        $stm=$this->db->prepare($sql);
+        $stm->execute();
+        return $stm->fetch();
+    }
+>>>>>>> 4e8cca4c7c3e12440a03bb9f519986f9e5d556ca
 }
 ?>
