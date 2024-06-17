@@ -53,7 +53,7 @@ if($encontrado){
                             Bienvenido: <?php echo $_SESSION['nombre']." ".$_SESSION['apellidos'] ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end style-dropdown">
-                            <li><a class="dropdown-item style-drop-it" href="#">Actualizar datos</a></li>
+                            <li><a class="dropdown-item style-drop-it" href="informacionUsusario.php">Ver informacion</a></li>
                             <li><a class="dropdown-item style-drop-it" id="cerrarSesion">Cerrar sesión</a></li>
                         </ul>
                     </li>
