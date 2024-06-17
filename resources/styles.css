@@ -1,5 +1,50 @@
 body{
-    padding: 10px;
+    background-color: rgb(25,34,43);
+}
+
+img{
+    height: 80px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 5px;
+}
+
+.style-link{
+    color: black;
+    font-size: 20px;
+}
+
+.style-nav{
+    background-color: rgb(188,18,64);
+    color: black;
+}
+
+.style-dropdown{
+    background-color: rgb(185, 45, 85);
+}
+
+.style-drop-it{
+    color: black;
+}
+
+.style-drop-it:hover{
+    background-color: rgb(185, 75, 105);
+}
+
+.container-table{
+    padding: 15px;
+    width: 100%; 
+    overflow-x: auto;
+}
+
+.style-table{
+    width: 100%; 
+    border-collapse: collapse;
+    background-color: rgb(130, 240, 215);
+}
+
+.style-table thead {
+    background-color: rgb(18,188,142); 
 }
 
 .circular-button {
@@ -18,8 +63,8 @@ body{
 }
 
 .circular-button img {
-    width: 70%;
-    height: 70%;
+    width: 85%;
+    height: 85%;
     object-fit: cover;
 }
 
@@ -27,15 +72,22 @@ body{
     box-shadow: 0 6px 8px rgba(255, 255, 255, 0.2);
 }
 
+.center-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
 .div-add{
     display: flex;
     align-items: center;
-    margin: 20px;
+    margin: 15px;
 }
 
 .div-add p {
     margin-top: 15px;
     margin-right: 10px;
     font-size: 20px;
-    
+    color: white;
 }
