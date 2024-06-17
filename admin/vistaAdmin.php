@@ -62,7 +62,7 @@ if ($encontrado) {
             <ul class="style-drop-it:hover style-dropdown dropdown-menu dropdown-menu-end" data-bs-toggle="dropdown" data-bs-display="static" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="actualizarUsuario.php">Actualizar Datos</a></li>
                 <li><a class="dropdown-item" href="informacionUsusario.php">Informacion</a></li>
-                <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+                <li><a class="dropdown-item" href="../model/logout.php">Cerrar Sesión</a></li>
             </ul>
         </li> 
     </ul>
