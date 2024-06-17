@@ -1,5 +1,33 @@
 <?php
-require_once('../model/GetAll.php');
+session_start();
+
+require_once('../model/conexion.php');
+require_once('../model/ORM.php');
+require_once('../model/producto.php');
+require_once('../model/usuario.php');
+
+// Verifica si el usuario tiene rol de ADMIN
+if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'ADMIN') {
+    $_SESSION['error'] = "Intenta ingresar a la pagina admin, con un usuario que tiene un rol diferente o no ha iniciado sesión";
+    header('Location: ../formLogin.php');
+    exit();
+}
+
+$db = new Database();
+$encontrado = $db->verificarDriver();
+
+if ($encontrado) {
+    $cnn = $db->getConnection();
+    $usuarioModelo = new Usuarios($cnn);
+    $nombreAdmin = $usuarioModelo->getNombreAdmin(); // Obtiene el nombre del administrador
+
+    $productoModelo = new Productos($cnn);
+    $productos = $productoModelo->getAll();
+} else {
+    $_SESSION['error'] = "Error al conectar con la base de datos";
+    header("Location: ../formLogin.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +57,7 @@ require_once('../model/GetAll.php');
     <ul class="navbar-nav">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-               <strong>Bienvenid@ Admin: <?php echo $nombreAdmin; ?></strong> 
+            <strong>Bienvenid@ Admin: <?php echo $_SESSION['nombre']." ".$_SESSION['apellidos'] ?> <!-- Muestra el nombre del administrador -->
             </a>
             <ul class="style-drop-it:hover style-dropdown dropdown-menu dropdown-menu-end" data-bs-toggle="dropdown" data-bs-display="static" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#">Actualizar Datos</a></li>
@@ -40,7 +68,6 @@ require_once('../model/GetAll.php');
 </div>
 
 </nav>
-
 <div class="div-add">
         <p>Agregar producto</p>
         <button class="circular-button" onclick="insertP(this)">
@@ -163,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function () {
             var productId = button.getAttribute('data-id');
             var productName = button.getAttribute('data-nombre');
-            if (confirm('¿Estás seguro de que deseas eliminar este producto: ' + productName + '?')) {
+            if (confirm('¿Estás seguro de que deseas eliminar este producto "' + productName + '"?')) {
                 fetch('../model/deleteById.php?id=' + productId, {
                     method: 'DELETE'
                 })
