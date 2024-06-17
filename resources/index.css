@@ -13,3 +13,20 @@ nav > a{
 nav > a:hover{
     color: goldenrod !important;
 }
+
+.modal-content {
+    background-color: rgb(25,34,43);
+    border-color: rgb(25,34,43);
+    color:white;
+}
+
+.modal-header {
+    background-color: rgb(188,18,64);
+    border-color: rgb(188,18,64);
+    color: #fff;
+}
+
+.modal-footer {
+    background-color: rgb(25,34,43);
+    border-color: rgb(25,34,43);
+}

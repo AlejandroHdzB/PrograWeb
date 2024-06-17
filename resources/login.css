@@ -1,0 +1,36 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+    background-image: url('img/backlogin.jpg');
+    background-size: cover;
+    background-position: center; 
+}
+
+.login-container {
+    background-color: rgba(25,34,43,0.9);
+    color: white;
+    border-radius: 12px;
+    max-width: 400px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 5vh;
+}
+
+#btnIniciarSesion {
+    background-color: rgb(188,18,64);
+    color: black;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+#btnIniciarSesion:hover{
+    background-color: rgb(185, 45, 85);
+}
