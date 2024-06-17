@@ -17,7 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+    // Encriptar la contraseña usando SHA-1 (Nota: No es seguro para la producción)
+    $passwordHash = sha1($password);
 
     try {
         // Verificar si el usuario o el teléfono ya existen
@@ -77,8 +78,8 @@ function validatePassword($password)
 
     return $longitud && $mayuscula && $minuscula && $numero && $simbolo;
 }
-
 ?>
+
 
 
 <!DOCTYPE html>
