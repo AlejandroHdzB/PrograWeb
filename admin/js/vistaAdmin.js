@@ -16,3 +16,6 @@ function extraeElementosFila (button){
     //extra para ver que funcione
     window.location.href = 'update.php';
 }
+function insertP(){
+    window.location.href = 'insert.php';
+}

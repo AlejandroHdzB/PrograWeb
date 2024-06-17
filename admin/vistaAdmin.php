@@ -15,7 +15,7 @@
     <h1 class="text-center">Datos</h1>
     <div class="div-add">
         <p>Agregar camion:</p>
-        <button class="circular-button">
+        <button class="circular-button" onclick="insertP(this)">
             <img src="../resources/img/agregar.png" alt="Eliminar">
         </button>
     </div>

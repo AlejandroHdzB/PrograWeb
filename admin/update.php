@@ -10,6 +10,21 @@
     <script src="../admin/js/update.js"></script>
 </head>
 <body>
+    <div class="jumbotron header-img">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h1 class="display-1">Home</h1>
+                        <p>Proyecto de programacion web</p>
+                    </div>
+                    <nav class="nav col justify-content-end">
+                        <a class="nav-link active" aria-current="page" href="vistaAdmin.php">Home</a>
+                        <a class="nav-link" href="formLogin.php">Iniciar sesión</a>
+                        <a class="nav-link" href="">Registrar</a>
+                    </nav>
+                </div>           
+            </div>
+        </div>
     <div class="container mt-5">
         <h1>Formulario de Información Productos</h1>
         <form id="formularioActualizar">
