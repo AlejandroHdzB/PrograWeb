@@ -5,11 +5,11 @@
     color: white;
 }
 
-a{
+nav > a{
     color: white !important;
     font-size: 25px !important;
 }
 
-a:hover{
+nav > a:hover{
     color: goldenrod !important;
 }
