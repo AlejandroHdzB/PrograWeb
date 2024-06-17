@@ -60,7 +60,8 @@ if ($encontrado) {
             <strong>Bienvenid@ Admin: <?php echo $_SESSION['nombre']." ".$_SESSION['apellidos'] ?> <!-- Muestra el nombre del administrador -->
             </a>
             <ul class="style-drop-it:hover style-dropdown dropdown-menu dropdown-menu-end" data-bs-toggle="dropdown" data-bs-display="static" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Actualizar Datos</a></li>
+                <li><a class="dropdown-item" href="informacionUsusario.php">Ver informacion</a></li>
+                <li><a class="dropdown-item" href="actualizarUsuario.php">Actualizar informacion</a></li>
                 <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
             </ul>
         </li> 
