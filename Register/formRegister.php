@@ -156,8 +156,8 @@ function validatePassword($password)
                 </div>
                 <nav class="nav col justify-content-end">
                     <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
-                    <a class="nav-link" href="../index.php">Iniciar sesión</a>
-                    <a class="nav-link" href="../formLogin.php">Registrarse</a>
+                    <a class="nav-link" href="../formLogin.php">Iniciar sesión</a>
+                    <a class="nav-link" href="#">Registrarse</a>
                 </nav>
             </div>
         </div>
