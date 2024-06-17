@@ -41,7 +41,7 @@ if($encontrado){
 <body>
     <nav class="navbar navbar-expand-lg style-nav">
         <div class="container-fluid">
-            <img src="../resources/img/logo.png">
+            <img src="../resources/img/logoCliente.png">
             <h1>Partes de camiones</h1>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -118,17 +118,19 @@ if($encontrado){
                         const datos = JSON.parse(respuesta);
                         let mensaje = '';
                         if(datos.estado === 'ok'){
-                            const producto = datos.data[0];
+                            const producto = datos.data;
+                            mensaje += `<h6>Precio: ${producto.precio} MX</h6> `
                             const detalles = producto.detalles.split(',');
                             detalles.forEach((d) => {
                                 mensaje +=`
                                     <h6>${d}</h6>
                                 `;
                             })
+                            $("#modalTitle").text(`${producto.nombre}`);
                         }else{
                             mensaje = `<h6>${datos.mensaje}</h6>`;
+                            $("#modalTitle").text("Error");
                         }
-                        $("#modalTitle").text('Detalles');
                         $("#modalResponse").html(mensaje);
                         $("#modalDetalles").modal('show');
                     },
