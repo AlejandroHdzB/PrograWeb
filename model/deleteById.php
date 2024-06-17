@@ -1,38 +1,27 @@
 <?php
-// Verificar si se recibió un ID de producto válido
-if (isset($_GET['id']) && !empty($_GET['id'])) {
-    $productId = $_GET['id'];
+require_once('conexion.php');
+require_once('ORM.php');
+require_once('producto.php');
 
-    // Realizar la conexión a la base de datos y la eliminación del producto
-    require_once('../model/conexion.php'); // Asegúrate de que la ruta sea correcta
-    require_once('../model/ORM.php'); // Asegúrate de que la ruta sea correcta
+if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+    $id = $_GET['id'];
 
     $db = new Database();
-    $encontrado = $db->verificarDriver();
+    $cnn = $db->getConnection();
+    $productoModelo = new Productos($cnn);
 
-    if ($encontrado) {
-        $cnn = $db->getConnection();
-        $productoModelo = new ORM('id', 'productos', $cnn); // Asegúrate de que los parámetros sean correctos
-
-        // Intentar eliminar el producto
-        try {
-            $productoModelo->deleteById($productId);
-            // Si la eliminación se realiza con éxito, devuelve una respuesta JSON
-            http_response_code(200);
-            echo json_encode(array('message' => 'Producto eliminado exitosamente.'));
-        } catch (Exception $e) {
-            // Si ocurre un error durante la eliminación, devuelve un mensaje de error
-            http_response_code(500);
-            echo json_encode(array('message' => 'No se pudo eliminar el producto. Error: ' . $e->getMessage()));
-        }
-    } else {
-        // Si no se encuentra la base de datos, devuelve un mensaje de error
-        http_response_code(500);
-        echo json_encode(array('message' => 'No se pudo conectar a la base de datos.'));
+    // Verificar si el producto existe
+    $producto = $productoModelo->getById($id);
+    if (!$producto) {
+        // El producto no existe, devuelve un mensaje de error
+        header("HTTP/1.1 404 Not Found");
+        echo json_encode(array("message" => "El producto no existe"));
+        exit();
     }
-} else {
-    // Si no se proporciona un ID de producto válido, devuelve un mensaje de error
-    http_response_code(400);
-    echo json_encode(array('message' => 'No se proporcionó un ID de producto válido.'));
+
+    // Eliminar el producto
+    $productoModelo->deleteById($id);
+    echo json_encode(array("message" => "Producto eliminado exitosamente"));
+    exit();
 }
 ?>

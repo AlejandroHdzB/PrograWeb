@@ -91,7 +91,6 @@ img{
     font-size: 20px;
     color: white;
 }
-
 .modal-content {
     background-color: rgb(25,34,43);
     border-color: rgb(25,34,43);
@@ -107,4 +106,10 @@ img{
 .modal-footer {
     background-color: rgb(25,34,43);
     border-color: rgb(25,34,43);
+}
+
+.mensaje {
+    text-align: center;
+    font-size: 40px;
+    color: white;
 }

@@ -47,6 +47,9 @@ require_once('../model/GetAll.php');
     </div> 
 
 <div class="container-table">
+<?php if (empty($productos)) : ?>
+    <p class="mensaje">No hay productos en el inventario</p>
+    <?php else : ?>
     <table class="table-bordered style-table">
         <thead>
             <tr>
@@ -59,7 +62,7 @@ require_once('../model/GetAll.php');
                 <th scope="col" class="text-center">Eliminar</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody> 
             <?php
             foreach ($productos as $producto) {
                 echo "<tr>";
@@ -83,7 +86,7 @@ require_once('../model/GetAll.php');
                       </td>";
                 echo "<td class='text-center'>
                 <div class='d-flex justify-content-center'>
-                <button class='circular-button eliminar-button' data-id='{$producto['id']}'>
+                <button class='circular-button eliminar-button' data-id='{$producto['id']}' data-nombre='{$producto['nombre']}'>
                         <img src='../resources/img/eliminar.png' alt='Eliminar'>
                 </button>
                 </div>
@@ -93,6 +96,7 @@ require_once('../model/GetAll.php');
             ?>
         </tbody>
     </table>
+    <?php endif; ?>
 </div>
 
 <!-- Modal -->
@@ -155,13 +159,14 @@ document.addEventListener('DOMContentLoaded', function () {
     eliminarButtons.forEach(function (button) {
         button.addEventListener('click', function () {
             var productId = button.getAttribute('data-id');
-            if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+            var productName = button.getAttribute('data-nombre');
+            if (confirm('¿Estás seguro de que deseas eliminar este producto: ' + productName + '?')) {
                 fetch('../model/deleteById.php?id=' + productId, {
                     method: 'DELETE'
                 })
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('Error al eliminar el producto');
+                        throw new Error('Producto no existente');
                     }
                     return response.json();
                 })
@@ -169,11 +174,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     alert('Producto eliminado exitosamente');
                     location.reload();
                 })
-                .catch(error => console.error('Error:', error.message));
+                .catch(error => {
+                    alert('Error al eliminar el producto: ' + error.message);
+                });
             }
         });
     });
 });
+
 </script>
 
 </body>
