@@ -55,7 +55,7 @@
             }
         ?>
         <button type="submit" class="btn" id="btnIniciarSesion">Iniciar sesión</button>
-        <a class="text-center" href="">Registrarse</a>
+        <a class="text-center" href="Register/formRegister.php">Registrarse</a>
     </form>
     <script>
         $(document).ready(function(){
