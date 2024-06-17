@@ -10,11 +10,13 @@ require_once('../model/GetAll.php');
     <link rel="shortcut icon" href="../resources/icono.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="../admin/js/vistaAdmin.js"></script>
     <link href="../resources/styles.css" rel="stylesheet">
     <link rel="icon" href="../resources/img/icono.ico">
     <title>Administrador</title>
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-dark style-nav">
     <a class="navbar-brand style-link" href="#" style="font-size: 40px;">
         <img src="../resources/img/icono.ico" alt="Logo">    
@@ -41,7 +43,7 @@ require_once('../model/GetAll.php');
 
 <div class="div-add">
         <p>Agregar producto</p>
-        <button class="circular-button">
+        <button class="circular-button" onclick="insertP(this)">
             <img src="../resources/img/agregar.png" alt="Agregar">
         </button>
     </div> 
@@ -77,18 +79,19 @@ require_once('../model/GetAll.php');
                         </button>
                 </div>
                       </td>";
-                echo "<td class='text-center'>
-                <div class='d-flex justify-content-center'>
-                        <button class='circular-button'>
-                          <img src='../resources/img/actualizar.png' alt='Actualizar'>
-                        </button>
-                </div>
-                      </td>";
+                      echo "<td class='text-center'>
+                      <div class='d-flex justify-content-center'>
+                          <button class='circular-button' onclick='extraeElementosFila(this)'>
+                              <img src='../resources/img/actualizar.png' alt='Actualizar'>
+                          </button>
+                      </div>
+                  </td>";
                 echo "<td class='text-center'>
                 <div class='d-flex justify-content-center'>
                 <button class='circular-button eliminar-button' data-id='{$producto['id']}' data-nombre='{$producto['nombre']}'>
                         <img src='../resources/img/eliminar.png' alt='Eliminar'>
                 </button>
+
                 </div>
                       </td>";
                 echo "</tr>";
@@ -185,4 +188,5 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 </body>
+
 </html>
