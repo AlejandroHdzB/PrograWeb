@@ -10,10 +10,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telefono = htmlspecialchars($_POST['telefono']);
     $direccion = htmlspecialchars($_POST['direccion']);
     $usuario = htmlspecialchars($_POST['usuario']);
-    $password = htmlspecialchars($_POST['password']);
+    $password = $_POST['password']; // No aplicamos htmlspecialchars aquí para mantener los caracteres especiales
 
     if (!validatePassword($password)) {
-        echo "<script>alert('Error: La contraseña debe tener al menos 8 caracteres y contener una mezcla de mayúsculas, minúsculas, números y símbolos.');</script>";
+        echo json_encode(["status" => "error", "message" => "La contraseña debe tener al menos 8 caracteres y contener una mezcla de mayúsculas, minúsculas, números y símbolos."]);
         exit();
     }
 
@@ -21,33 +21,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         // Verificar si el usuario o el teléfono ya existen
-        $checkUserPhone = "SELECT COUNT(*) FROM usuarios WHERE user = ? OR telefono = ?";
+        $checkUserPhone = "SELECT COUNT(*) as count, 
+                           SUM(CASE WHEN user = ? THEN 1 ELSE 0 END) as user_count,
+                           SUM(CASE WHEN telefono = ? THEN 1 ELSE 0 END) as phone_count
+                           FROM usuarios WHERE user = ? OR telefono = ?";
         $stmtCheck = $conn->prepare($checkUserPhone);
         $stmtCheck->bindParam(1, $usuario);
         $stmtCheck->bindParam(2, $telefono);
+        $stmtCheck->bindParam(3, $usuario);
+        $stmtCheck->bindParam(4, $telefono);
         $stmtCheck->execute();
-        $count = $stmtCheck->fetchColumn();
+        $result = $stmtCheck->fetch(PDO::FETCH_ASSOC);
 
-        if ($count > 0) {
-            // Verificar específicamente cuál existe
-            $checkUser = "SELECT COUNT(*) FROM usuarios WHERE user = ?";
-            $stmtCheckUser = $conn->prepare($checkUser);
-            $stmtCheckUser->bindParam(1, $usuario);
-            $stmtCheckUser->execute();
-            $userCount = $stmtCheckUser->fetchColumn();
-
-            $checkPhone = "SELECT COUNT(*) FROM usuarios WHERE telefono = ?";
-            $stmtCheckPhone = $conn->prepare($checkPhone);
-            $stmtCheckPhone->bindParam(1, $telefono);
-            $stmtCheckPhone->execute();
-            $phoneCount = $stmtCheckPhone->fetchColumn();
-
-            if ($userCount > 0 && $phoneCount > 0) {
-                echo "<script>alert('Error: El usuario ya existe.');</script>";
-            } elseif ($userCount > 0) {
-                echo "<script>alert('Error: El usuario ya existe.');</script>";
-            } elseif ($phoneCount > 0) {
-                echo "<script>alert('Error: El usuario ya existe.');</script>";
+        if ($result['count'] > 0) {
+            if ($result['user_count'] > 0 && $result['phone_count'] > 0) {
+                echo json_encode(["status" => "error", "message" => "El usuario y el teléfono ya existen."]);
+            } elseif ($result['user_count'] > 0) {
+                echo json_encode(["status" => "error", "message" => "El usuario ya existe."]);
+            } elseif ($result['phone_count'] > 0) {
+                echo json_encode(["status" => "error", "message" => "El teléfono ya existe."]);
             }
         } else {
             $sql = "INSERT INTO usuarios (nombre, apellidos, telefono, direccion, user, password, rol) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -77,13 +69,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 function validatePassword($password)
 {
+    $longitud = strlen($password) >= 8;
     $mayuscula = preg_match('/[A-Z]/', $password);
     $minuscula = preg_match('/[a-z]/', $password);
     $numero = preg_match('/[0-9]/', $password);
-    $simbolo = preg_match('/[^a-zA-Z0-9]/', $password);
+    $simbolo = preg_match('/[^A-Za-z0-9]/', $password);
 
-    return strlen($password) >= 8 && $mayuscula && $minuscula && $numero && $simbolo;
+    return $longitud && $mayuscula && $minuscula && $numero && $simbolo;
 }
+
 ?>
 
 
@@ -205,6 +199,20 @@ function validatePassword($password)
     $(document).ready(function() {
         $('#registrationForm').on('submit', function(e) {
             e.preventDefault();
+
+            // Validación de contraseña en el lado del cliente
+            var password = $('#password').val();
+            var longitud = password.length >= 8;
+            var mayuscula = /[A-Z]/.test(password);
+            var minuscula = /[a-z]/.test(password);
+            var numero = /[0-9]/.test(password);
+            var simbolo = /[^A-Za-z0-9]/.test(password);
+
+            if (!(longitud && mayuscula && minuscula && numero && simbolo)) {
+                alert("La contraseña debe tener al menos 8 caracteres y contener una mezcla de mayúsculas, minúsculas, números y símbolos.");
+                return;
+            }
+
             $.ajax({
                 url: 'formRegister.php',
                 type: 'POST',
@@ -216,8 +224,14 @@ function validatePassword($password)
                         window.location.href = '../index.php';
                     }
                 },
-                error: function() {
-                    alert('El usuario o telefono ya existen.');
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                    try {
+                        var response = JSON.parse(xhr.responseText);
+                        alert(response.message || 'Ocurrió un error durante el registro.');
+                    } catch (e) {
+                        alert('Ocurrió un error inesperado durante el registro.');
+                    }
                 }
             });
         });
