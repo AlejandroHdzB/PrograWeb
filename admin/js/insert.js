@@ -1,88 +1,69 @@
-function insert(event){
+function insert(event) {
     let formulario = document.getElementById("productForm");
-        event.preventDefault();
-        if (nombre === '') { // Nombre
-            valid = false;
-            $('#nombre').addClass('is-invalid');
-            $('#nombreError').text('El nombre es obligatorio.')
-        } else {
-            $('#nombre').removeClass('is-invalid');
-            $('#nombreError').text('')
-        }
+    event.preventDefault();
 
-        if (precio === '' ) { // Precio
-            valid = false;
-            $('#precio').addClass('is-invalid');
-            $('#precioError').text('El precio es obligatorio.')
-        } else if ( parseFloat(precio) <= 0 ){
-            valid = false;
-            $('#precio').addClass('is-invalid');
-            $('#precioError').text('El precio debe ser mayor a cero.')
+    let vn = validarVacio(formulario.elements[0].value, formulario.elements[0].name)
+    let vp = validarVacio(formulario.elements[1].value, formulario.elements[1].name)
+    let vc = validarVacio(formulario.elements[2].value, formulario.elements[2].name)
+    let vd = validarVacio(formulario.elements[3].value, formulario.elements[3].name)
 
-        } else {
-            $('#precio').removeClass('is-invalid');
-            $('#precioError').text('')
-        }
-        
-        if (cantidad === '') { // Cantidad
-            valid = false;
-            $('#cantidad').addClass('is-invalid');
-            $('#cantidadError').text('La cantidad es obligatoria.')
-            
-        } else if ( parseInt(cantidad) <= 0 ){
-            valid = false;
-            $('#cantidad').addClass('is-invalid');
-            $('#cantidadError').text('La cantidad debe ser mayor a cero.')
 
-        } else {
-            $('#cantidad').removeClass('is-invalid');
-            $('#cantidadError').text('')
-        }
-        
-        if (detalles === '') { // Detalles
-            valid = false;
-            $('#detalles').addClass('is-invalid');
-            $('#detallesError').text('Los detalles son obligatorios.')
-        } else {
-            $('#detalles').removeClass('is-invalid');
-            $('#detallesError').text('')
-        }
-        let p = validarNumeros(formulario.elements[2].value,formulario.elements[2].name)
-        let c = validarNumeros(formulario.elements[3].value,formulario.elements[3].name)
-        if (p && c ){
+    if (vn && vp && vc && vd) {
+        let p = validarNumeros(formulario.elements[2].value, formulario.elements[2].name)
+        let c = validarNumeros(formulario.elements[3].value, formulario.elements[3].name)
+        if (p && c) {
             let nombre = formulario.elements[0].value.trim();
             let precio = formulario.elements[1].value.trim();
             let cantidad = formulario.elements[2].value.trim();
             let detalles = formulario.elements[3].value.trim();
-        
 
-            let datos={
-                nombre:nombre,
-                precio:precio,
-                cantidad:cantidad,
-                detalles:detalles
+
+            let datos = {
+                nombre: nombre,
+                precio: precio,
+                cantidad: cantidad,
+                detalles: detalles
             }
             $.ajax({
                 type: "POST",
                 url: "../model/insertProduct.php",
-                data:datos,
-                success: function(result) {
+                data: datos,
+                success: function (result) {
                     alert(result)
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.error("Error en la solicitud:", error);
                 }
             });
         }
-  
+    }else{
+        alert("falta llenar datos")
+    }
+
+
 }
 
-function validarNumeros(numero,nombre){
-    if(numero < 0){
+
+function validarVacio(dato, nombre) {
+    if (dato === null || dato === undefined) {
+        alert(nombre + ' es vacio');
+        return false;
+    }
+    if (typeof dato === 'string' && dato.trim() === '') {
+        alert(nombre + ' es vacio');
+        return false;
+        
+    }
+    return true;
+}
+
+
+function validarNumeros(numero, nombre) {
+    if (numero < 0) {
         alert(nombre + ' es menor que cero');
         return false;
-    }else{
+    } else {
         return true;
     }
-    
+
 }

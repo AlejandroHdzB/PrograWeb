@@ -12,43 +12,37 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../admin/js/insert.js"></script>
+    <link href="../resources/styles.css" rel="stylesheet">
     
 
     <title>Agregar producto</title>
 </head>
 <body>
-    <div class="jumbotron header-img">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col">
-                    <h1 class="display-1">Home</h1>
-                    <p>Proyecto de programacion web</p>
-                </div>
-                <nav class="nav col justify-content-end">
-                    <a class="nav-link active" aria-current="page" href="vistaAdmin.php">Home</a>
-                    <a class="nav-link" href="formLogin.php">Iniciar sesión</a>
-                    <a class="nav-link" href="">Registrar</a>
-                </nav>
-            </div>           
-        </div>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-dark style-nav">
+    <a class="navbar-brand style-link" href="vistaAdmin.php" style="font-size: 40px;">
+        <img src="../resources/img/icono.ico" alt="Logo">    
+        <strong>Autopartes de Camiones</strong>
+    </a>
+
+
+</nav>
 
 
 
     <div class="container mt-5">
-        <h2 class="mb-4">Agregar Producto</h2>
+    <   <h1>Formulario de Inserción Productos</h1>
         <form id="productForm">
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label> <span id="nombreError" class="text-danger"></span>
-                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa el nombre">
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa el nombre" require>
             </div>
             <div class="mb-3">
                 <label for="precio" class="form-label">Precio</label> <span id="precioError" class="text-danger"></span>
-                <input type="number" class="form-control" id="precio" name="precio" placeholder="Ingresa el precio">
+                <input type="number" class="form-control" id="precio" name="precio" placeholder="Ingresa el precio" require>
             </div>
             <div class="mb-3">
                 <label for="cantidad" class="form-label">Cantidad</label> <span id="cantidadError" class="text-danger"></span>
-                <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Ingresa la cantidad">
+                <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Ingresa la cantidad" require>
             </div>
             <div class="mb-3">
                 <label for="detalles" class="form-label">Detalles</label> <span id="detallesError" class="text-danger"></span>

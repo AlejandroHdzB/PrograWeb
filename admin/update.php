@@ -11,28 +11,22 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="../resources/styles.css" rel="stylesheet">
     <script src="../admin/js/update.js"></script>
 
     <title>Formulario de Información Productos</title>
 </head>
 <body>
-    <div class="jumbotron header-img">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col">
-                        <h1 class="display-1">Home</h1>
-                        <p>Proyecto de programacion web</p>
-                    </div>
-                    <nav class="nav col justify-content-end">
-                        <a class="nav-link active" aria-current="page" href="vistaAdmin.php">Home</a>
-                        <a class="nav-link" href="formLogin.php">Iniciar sesión</a>
-                        <a class="nav-link" href="">Registrar</a>
-                    </nav>
-                </div>           
-            </div>
-        </div>
+<nav class="navbar navbar-expand-lg navbar-dark style-nav">
+    <a class="navbar-brand style-link" href="vistaAdmin.php" style="font-size: 40px;">
+        <img src="../resources/img/icono.ico" alt="Logo">    
+        <strong>Autopartes de Camiones</strong>
+    </a>
+
+
+</nav>
     <div class="container mt-5">
-        <h1>Formulario de Información Productos</h1>
+        <h1>Formulario de Actualización Productos</h1>
         <form id="formularioActualizar">
             <div class="mb-3">
                 <label for="id">Id:</label>
