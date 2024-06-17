@@ -213,11 +213,11 @@ function validatePassword($password)
                 success: function(response) {
                     alert(response.message);
                     if (response.status === 'success') {
-                        window.location.href = '../index.php';
+                        window.location.href = '../admin/vistaAdmin.php';
                     }
                 },
                 error: function() {
-                    alert('Error al enviar el formulario.');
+                    alert('El usuario o telefono ya existen.');
                 }
             });
         });
