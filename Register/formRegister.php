@@ -213,7 +213,7 @@ function validatePassword($password)
                 success: function(response) {
                     alert(response.message);
                     if (response.status === 'success') {
-                        window.location.href = '../admin/vistaAdmin.php';
+                        window.location.href = '../index.php';
                     }
                 },
                 error: function() {
