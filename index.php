@@ -21,8 +21,8 @@
                     <p>Proyecto de programacion web</p>
                 </div>
                 <nav class="nav col justify-content-end">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    <a class="nav-link" href="#">Iniciar sesión</a>
+                    <a class="nav-link active" aria-current="page">Home</a>
+                    <a class="nav-link" href="formLogin.php">Iniciar sesión</a>
                     <a class="nav-link" href="Register/formRegister.php">Registrarse</a>
                 </nav>
             </div>
