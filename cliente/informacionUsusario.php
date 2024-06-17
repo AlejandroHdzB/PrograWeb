@@ -1,6 +1,6 @@
 <?php
 require_once('../model/GetAll.php');
-$_SESSION["usr"] = 'Watson31';
+$_SESSION["usr"] = 'pedro1';
 ?>
 <!DOCTYPE html>
 <html lang="en">
