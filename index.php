@@ -17,17 +17,51 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col">
-                    <h1 class="display-1">Home</h1>
+                    <h1 class="display-1">TecnoTrack</h1>
                     <p>Proyecto de programacion web</p>
                 </div>
                 <nav class="nav col justify-content-end">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    <a class="nav-link" href="#">Iniciar sesión</a>
+                    <a class="nav-link" href="formLogin.php">Iniciar sesión</a>
                     <a class="nav-link" href="Register/formRegister.php">Registrarse</a>
                 </nav>
             </div>
         </div>
     </div>
+
+    <div class="jumbotron">
+        <div class="container mt-2">
+            <h1 class="display-5">¡Revolucione su logística con TecnoTrack!</h1>
+            <p class="lead">Descubra la potencia y versatilidad de nuestros camiones para transformar su negocio.</p>
+            <hr class="my-1">
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <h2>Capacidad de carga titánica</h2>
+                <p>Nuestros camiones desafían los límites, transportando hasta <strong>60 toneladas</strong> de mercancía en un solo viaje, ¡equivalente a 120 autos! Supere cualquier desafío de transporte con la fuerza bruta de nuestros motores y la amplitud de nuestros espacios de carga.</p>
+            </div>
+            <div class="col-md-6 mb-4">
+                <h2>Robustez a prueba de todo</h2>
+                <p>Fabricados con acero de alta resistencia y equipados con motores potentes, nuestros camiones están diseñados para dominar cualquier terreno. Conquiste montañas, cruce ríos y navegue por caminos desafiantes sin perder el ritmo, gracias a su durabilidad inquebrantable.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-light py-2 mt-2">
+        <div class="container">
+            <h2 class="text-center mb-4">¡No se conforme con menos!</h2>
+            <p class="text-center">Elija TecnoTrans y experimente la diferencia que solo la calidad, la innovación y el compromiso pueden ofrecer.</p>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light py-3 mt-1">
+        <div class="container text-center">
+            <p><strong>TecnoTrack: ¡Su carga en las mejores manos!</strong></p>
+        </div>
+    </footer>
 </body>
 
 </html>

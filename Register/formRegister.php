@@ -157,13 +157,13 @@ function validatePassword($password)
         <div class="container">
             <div class="row align-items-center">
                 <div class="col">
-                    <h1 class="display-1">Home</h1>
+                    <h1 class="display-1">TecnoTrack</h1>
                     <p>Proyecto de programacion web</p>
                 </div>
                 <nav class="nav col justify-content-end">
                     <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
                     <a class="nav-link" href="../index.php">Iniciar sesión</a>
-                    <a class="nav-link" href="#">Registrarse</a>
+                    <a class="nav-link" href="../formLogin.php">Registrarse</a>
                 </nav>
             </div>
         </div>
@@ -196,7 +196,7 @@ function validatePassword($password)
                 </div>
                 <button type="submit" class="btn btn-register">Registrarte</button>
             </form>
-            <a href="../index.php" class="link-login">¿Ya tienes una cuenta?</a>
+            <a href="../formLogin.php" class="link-login">¿Ya tienes una cuenta?</a>
         </div>
     </div>
 </body>
